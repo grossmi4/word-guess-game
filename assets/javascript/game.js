@@ -5,8 +5,9 @@ var wordArray = [];
 var wrongGuesses = [];
 var correctGuesses = [];
 var displayWord = "";
-var remainingGuesses = 7;
-
+var remainingMisses = 7;
+var isActive = false;
+var wins = 0;
 
 console.log(gameWord);
 
@@ -42,48 +43,61 @@ startBtn.onclick = function() {
   var gameContainer = document.getElementsByClassName("game-container")[0];
   gameContainer.style.height = '40%';
   startBtn.style.display = "none";
+  isActive = true;
 };
 
 //function to refresh screen elements on guess
 function textrefresh() {
   document.getElementById("correctGuesses").innerHTML = displayWord;
-  document.getElementById("remainingGuesses").innerHTML = remainingGuesses;
+  document.getElementById("remainingMisses").innerHTML = remainingMisses;
   document.getElementById("wrongGuesses").innerHTML = wrongGuesses.toString()
 }
 
 //function that handles when a user presses a key
 function keyhandler(event) {
-  if (alphacheck(event)) {
-    var guess = event.key.toUpperCase();
-    //checks if the guessed letter is in the target word
-    if (wordArray.includes(guess)) {
-      displayWord = "";
-      //update correctGuesses and displayWord
-      for (var j = 0; j < wordArray.length; j++) {
-        if (wordArray[j] === guess) {
-          correctGuesses[j] = guess;
-          displayWord = displayWord + correctGuesses[j] + " ";
-        }
-        else {
-          displayWord = displayWord + correctGuesses[j] + " ";
-        }
+  if(isActive) {
+      if (alphacheck(event)) {
+          var guess = event.key.toUpperCase();
+          //checks if the guessed letter is in the target word
+          if (wordArray.includes(guess)) {
+              displayWord = "";
+              //update correctGuesses and displayWord
+              for (var j = 0; j < wordArray.length; j++) {
+                  if (wordArray[j] === guess) {
+                      correctGuesses[j] = guess;
+                      displayWord = displayWord + correctGuesses[j] + " ";
+                  }
+                  else {
+                      displayWord = displayWord + correctGuesses[j] + " ";
+                  }
+              }
+              displayWord = displayWord.trim()
+          }
+          //if guessed letter is not included in the word, adds to miss counter and wrongGuesses array
+          else {
+              wrongGuesses.push(guess);
+              remainingMisses = remainingMisses - 1;
+          }
+          //refresh screen elements
+          textrefresh();
       }
-      displayWord = displayWord.trim()
-    }
-    //if guessed letter is not included in the word, adds to miss counter and wrongGuesses array
-    else {
-      wrongGuesses.push(guess);
-      remainingGuesses = remainingGuesses - 1;
-    }
-    //refresh screen elements
-    textrefresh();
-  }
-  else {
-    false;
   }
 }
 
 //checks made after a successful guess
 function endgamecheck() {
-  
+  if(remainingMisses = 0 || wordArray.toString() === correctGuesses.toString()) {
+    isActive = false;
+    if (remainingMisses = 0) {
+      document.getElementById("end-message").innerHTML = "Game Over";
+    }
+    else {
+      isActive = false;
+      wins = wins + 1;
+      document.getElementById("end-message").innerHTML = "You Win!";
+    }
+
+  }
 }
+
+//displays play again prompt
