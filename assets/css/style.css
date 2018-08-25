@@ -32,8 +32,23 @@ span {
     transition: height 1s;
 }
 
+
 .word-container{
+    font-size: 72px;
+    color: #444444;
+    font-weight: 300;
+    padding: 30px 50px;
+    display: block;
 }
+
+.miss-container, .other-elements-containers{
+    font-size: 24px;
+    color: #444444;
+    font-weight: 300;
+    padding: 10px 50px;
+}
+
+
 
 #start-btn{
     text-align: center;
