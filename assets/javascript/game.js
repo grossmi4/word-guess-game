@@ -49,7 +49,7 @@ startBtn.onclick = function() {
 //function to refresh screen elements on guess
 function textrefresh() {
   document.getElementById("correctGuesses").innerHTML = displayWord;
-  document.getElementById("remainingMisses").innerHTML = remainingMisses;
+  document.getElementById("remainingGuesses").innerHTML = remainingMisses;
   document.getElementById("wrongGuesses").innerHTML = wrongGuesses.toString()
 }
 
@@ -80,15 +80,19 @@ function keyhandler(event) {
           }
           //refresh screen elements
           textrefresh();
+          endgamecheck();
       }
   }
 }
 
 //checks made after a successful guess
 function endgamecheck() {
-  if(remainingMisses = 0 || wordArray.toString() === correctGuesses.toString()) {
+  if(remainingMisses === 0 || wordArray.toString() === correctGuesses.toString()) {
     isActive = false;
-    if (remainingMisses = 0) {
+    document.getElementsByClassName("popup-shade")[0].style.display = "block";
+    document.getElementById("end-message").style.display = "block";
+    document.getElementById("playAgainButton").style.display = "block";
+    if (remainingMisses === 0) {
       document.getElementById("end-message").innerHTML = "Game Over";
     }
     else {
@@ -99,5 +103,25 @@ function endgamecheck() {
 
   }
 }
+
+var playAgainBtn = document.getElementById("playAgainButton")
+playAgainBtn.onclick = function() {
+  isActive = true
+  document.getElementsByClassName("popup-shade")[0].style.display = "none";
+  document.getElementById("end-message").style.display = "none";
+  document.getElementById("playAgainButton").style.display = "none";
+  gameWord = Words[(Math.floor(Math.random() * Words.length))];
+  remainingMisses = 7;
+  wordArray = [];
+  wrongGuesses = [];
+  correctGuesses = [];
+  for(var i = 0; i < gameWord.length; i++) {
+    wordArray.push(gameWord[i]);
+    correctGuesses.push("_");
+    displayWord = displayWord + "_" + " ";
+  }
+  displayWord = displayWord.trim();
+
+};
 
 //displays play again prompt

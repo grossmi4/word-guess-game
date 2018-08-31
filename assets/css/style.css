@@ -63,6 +63,7 @@ span {
 #end-message{
     display: none;
     font-size: 48px;
+    font-weight: 300;
     color: #ffffff;
     z-index: 2;
 }
