@@ -76,6 +76,7 @@ span {
     font-weight: 300;
     color: #ffffff;
     z-index: 2;
+    padding: 15px;
 }
 
 #playAgainButton{
@@ -85,6 +86,7 @@ span {
     height: 42px;
     border: 1px solid white;
     color: white;
+    background-color: transparent;
     font-size: 18px;
     border-radius: 4px;
     cursor: pointer;

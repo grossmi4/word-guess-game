@@ -44,6 +44,7 @@ startBtn.onclick = function() {
   gameContainer.style.height = '40%';
   startBtn.style.display = "none";
   isActive = true;
+  textrefresh();
 };
 
 //function to refresh screen elements on guess
@@ -99,6 +100,7 @@ function endgamecheck() {
     else {
       isActive = false;
       wins = wins + 1;
+      document.getElementById("winCount").innerText = wins;
       document.getElementById("end-message").innerHTML = "You Win!";
     }
 
@@ -116,13 +118,14 @@ playAgainBtn.onclick = function() {
   wordArray = [];
   wrongGuesses = [];
   correctGuesses = [];
+  displayWord = ""
   for(var i = 0; i < gameWord.length; i++) {
     wordArray.push(gameWord[i]);
     correctGuesses.push("_");
     displayWord = displayWord + "_" + " ";
   }
   displayWord = displayWord.trim();
-
+  textrefresh()
 };
 
 //displays play again prompt
