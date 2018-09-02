@@ -92,6 +92,7 @@ function endgamecheck() {
     document.getElementsByClassName("popup-shade")[0].style.display = "block";
     document.getElementById("end-message").style.display = "block";
     document.getElementById("playAgainButton").style.display = "block";
+    document.getElementById("playAgainButton").style.zIndex = "3";
     if (remainingMisses === 0) {
       document.getElementById("end-message").innerHTML = "Game Over";
     }

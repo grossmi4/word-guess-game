@@ -49,6 +49,16 @@ span {
     padding: 10px 50px;
 }
 
+.endContainer {
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    width: 60%;
+    margin: 0 auto;
+    z-index: 2;
+    text-align: center;
+}
+
 .popup-shade{
     height: 100%;
     display: none;
@@ -78,6 +88,8 @@ span {
     font-size: 18px;
     border-radius: 4px;
     cursor: pointer;
+    z-index: 3;
+    margin: auto;
 }
 
 #start-btn{
